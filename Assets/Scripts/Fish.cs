@@ -20,6 +20,9 @@ public class Fish : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Player")){
+
+            SoundScript.instance.playCollectable();
+
             ++GameManager.instance.fish;
             GameManager.instance.updateFishDisplay();
             Destroy(this.gameObject);

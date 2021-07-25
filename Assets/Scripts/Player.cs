@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public GameObject pauseMenu;
     public Animator GameOverMenu;
 
+    public Animator anima;
+
+    public SpriteRenderer[] parts = new SpriteRenderer[7];
+
     public Animator camShake;
     public GameObject evil;
 
@@ -38,6 +42,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<CapsuleCollider2D>();
         renderer = GetComponent<SpriteRenderer>();
+
+        anima = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -62,9 +68,9 @@ public class Player : MonoBehaviour
                     // }
 
                     if (h > 0){
-                        renderer.flipX = false;
+                        
                     } else {
-                        renderer.flipX = true;
+                        
                     }
                 } else {
                     rb.velocity = new Vector2(0, rb.velocity.y);
@@ -96,12 +102,19 @@ public class Player : MonoBehaviour
 
         //reset speed
         speed = 40;
-        GameObject.Find("Platform").GetComponent<BackgroundScroller>().scrollSpeed = 25;
-        GameObject.Find("Platform2").GetComponent<BackgroundScroller>().scrollSpeed = 25;
+        GameObject.Find("Umbrellas").GetComponent<BackgroundScroller>().scrollSpeed = 28;
+        GameObject.Find("Umbrellas2").GetComponent<BackgroundScroller>().scrollSpeed = 28;
+        GameObject.Find("Buildings").GetComponent<BackgroundScroller>().scrollSpeed = 20;
+        GameObject.Find("Buildings2").GetComponent<BackgroundScroller>().scrollSpeed = 20;
+        GameObject.Find("FerrisWheel").GetComponent<BackgroundScroller>().scrollSpeed = 15;
+        GameObject.Find("FerrisWheel2").GetComponent<BackgroundScroller>().scrollSpeed = 15;
         GameObject.Find("Background").GetComponent<BackgroundScroller>().scrollSpeed = 10;
         GameObject.Find("Background2").GetComponent<BackgroundScroller>().scrollSpeed = 10;
 
         GameManager.instance.changeSpeed(1f);
+        GameManager.instance.difficulty = 1;
+        anima.speed = 1f;
+        GameManager.instance.scoreToAdd = 0.1f;
 
         //evil
         EvilPingu temp = evil.GetComponent<EvilPingu>();
@@ -121,9 +134,6 @@ public class Player : MonoBehaviour
         //score
         GameManager.instance.score = 0;
         GameManager.instance.scoreDisplay.text = "Score: ";
-
-        //sound
-        sound.playMainMenu();
     }
 
     public void pauseGame(){
@@ -136,6 +146,19 @@ public class Player : MonoBehaviour
 
         paused = !paused;
         pauseMenu.SetActive(paused);
+    }
+
+    public void forcePause(bool pausing){
+        Time.timeScale = 0;
+        paused = true;
+        rb.velocity = new Vector2(0, 0);
+        pauseMenu.SetActive(true);
+    }
+
+    public void unPause(bool pausing){
+        Time.timeScale = 1;
+        paused = false;
+        pauseMenu.SetActive(false);
     }
 
     private bool IsGrounded(){
@@ -190,46 +213,81 @@ public class Player : MonoBehaviour
     }
 
     public IEnumerator tempHit(float timer){
-
-        Color c = renderer.color;
         gameObject.tag = "Untagged";
 
         evil.GetComponent<EvilPingu>().walking = true;
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.5f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.5f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.5f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.5f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.5f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.5f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = new Color(c.r, c.g, c.b, 0.25f);
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 0.25f);
+        }
         yield return new WaitForSeconds(timer/10);
 
-        renderer.color = c;
+        //reset back to normal
+        foreach(SpriteRenderer rend in parts){
+            Color c = rend.color;
+            rend.color = new Color(c.r, c.g, c.b, 1f);
+        }
 
         gameObject.tag = "Player";
 

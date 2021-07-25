@@ -32,6 +32,7 @@ public class FlyingObstacles : MonoBehaviour
             Player p = other.GetComponent<Player>();
 
             p.getHit();
+            SoundScript.instance.playHit();
         }
     }
 }

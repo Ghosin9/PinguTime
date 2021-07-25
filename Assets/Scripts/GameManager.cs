@@ -29,8 +29,10 @@ public class GameManager : MonoBehaviour
     public float score = 0;
     private float highScore = 0;
     public int fish = 0;
+    private bool once;
 
-    public float difficulty = 0;
+    public float difficulty = 1;
+    public float scoreToAdd = 0.1f;
 
     public float backgroundScrollSpeed;
     public float speedBoost;
@@ -70,23 +72,32 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void updateFishDisplay(){
-        fishDisplay.text = "" + fish;
+        fishDisplay.text = "Fish: " + fish;
     }
 
     //score display
     public IEnumerator updateScore(){
-        score += 0.1f;
+        score += scoreToAdd;
         if (p.speedBoosted)
-            score += 0.1f;
+            score += scoreToAdd;
         score = Mathf.Round(score * 100f) / 100f;
         yield return new WaitForSeconds(0.5f);
-        scoreDisplay.text = "Score: " + score;
+        scoreDisplay.text = "Score: " + score * 100;
         if (!p.gameOver)
             StartCoroutine(updateScore());
+
+        if (score/25 > difficulty){
+            ++difficulty;
+
+            backgroundScrollSpeed += 0.2f;
+            changeSpeed(backgroundScrollSpeed);
+            p.anima.speed *= 1.2f;
+            scoreToAdd += 0.1f;
+        }
     }
 
     public void updateHighScore(){

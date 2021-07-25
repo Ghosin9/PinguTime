@@ -30,6 +30,8 @@ public class SpeedBoost : MonoBehaviour
         if (other.gameObject.CompareTag("Player")){
             Player p = other.GetComponent<Player>();
 
+            SoundScript.instance.playCollectable();
+
             StartCoroutine(increaseSpeed(p));
             GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 0);
             collider.enabled = false;
@@ -47,12 +49,15 @@ public class SpeedBoost : MonoBehaviour
         float temp = p.speed;
         p.speed = playerSpeed;
         destroyObj = false;
+        p.anima.speed = GameManager.instance.backgroundScrollSpeed*1.5f;
 
         GameManager.instance.changeSpeed(playerSpeed/temp);
 
         yield return new WaitForSeconds(5f);
 
         p.speed = temp;
+        p.anima.speed = GameManager.instance.backgroundScrollSpeed/1.5f;
+        // Debug.Log(p.anima.speed);
         GameManager.instance.changeSpeed(temp/playerSpeed);
         p.speedBoosted = false;
         Destroy(this.gameObject);

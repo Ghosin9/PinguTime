@@ -63,6 +63,7 @@ public class EvilPingu : MonoBehaviour
             Player p = other.GetComponent<Player>();
 
             p.getHit();
+            SoundScript.instance.playHit();
         }
     }
 }
