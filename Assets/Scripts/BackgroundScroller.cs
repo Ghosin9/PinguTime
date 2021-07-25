@@ -12,6 +12,8 @@ public class BackgroundScroller : MonoBehaviour
 
     public float width;
 
+    public float resetX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,8 @@ public class BackgroundScroller : MonoBehaviour
             scrollSpeed = scrollSpeed * GameManager.instance.backgroundScrollSpeed;
         }
 
-        width = collider.size.x;
-        width = width * this.transform.localScale.x;
+        // width = collider.size.x;
+        // width = width * this.transform.localScale.x;
 
         rb.velocity = new Vector2(-scrollSpeed, 0);
     }
@@ -32,7 +34,7 @@ public class BackgroundScroller : MonoBehaviour
     void FixedUpdate()
     {
         if (transform.position.x <= -width){
-            Vector2 resetPosition = new Vector2(width*0.9f, transform.position.y);
+            Vector2 resetPosition = new Vector2(resetX, transform.position.y);
             transform.position = resetPosition;
         }
     }
