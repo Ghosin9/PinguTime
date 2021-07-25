@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class FlyingObstacles : MonoBehaviour
 {
-
     public float speed;
 
     public Rigidbody2D rb;

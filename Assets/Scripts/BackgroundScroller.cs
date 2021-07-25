@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundScroller : MonoBehaviour
 {
 
-    public float scrollSpeed = -2f;
+    public float scrollSpeed;
 
     public Rigidbody2D rb;
     public BoxCollider2D collider;
@@ -18,17 +18,21 @@ public class BackgroundScroller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
 
-        width = collider.size.x;
-        collider.enabled = false;
+        if (GameManager.instance != null){
+            scrollSpeed = scrollSpeed * GameManager.instance.backgroundScrollSpeed;
+        }
 
-        rb.velocity = new Vector2(scrollSpeed, 0);
+        width = collider.size.x;
+        width = width * this.transform.localScale.x;
+
+        rb.velocity = new Vector2(-scrollSpeed, 0);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if (transform.position.x <= -width){
-            Vector2 resetPosition = new Vector2(width * 1.95f, 0);
+            Vector2 resetPosition = new Vector2(width*0.9f, transform.position.y);
             transform.position = resetPosition;
         }
     }

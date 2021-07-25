@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Fish : MonoBehaviour
 {
-
     public float speed;
 
     public Rigidbody2D rb;
     public BoxCollider2D collider;
-    private bool destroyObj = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +18,17 @@ public class Obstacle : MonoBehaviour
         rb.velocity = new Vector2(-speed, 0);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (transform.position.x < -50 && destroyObj){
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("Player")){
+            ++GameManager.instance.fish;
+            GameManager.instance.updateFishDisplay();
             Destroy(this.gameObject);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.CompareTag("Player")){
-            Player p = other.GetComponent<Player>();
-
-            p.getHit();
+    void Update(){
+        if (transform.position.x < -50){
+            Destroy(this.gameObject);
         }
     }
 }
