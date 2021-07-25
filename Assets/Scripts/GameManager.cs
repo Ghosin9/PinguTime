@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public Player p;
 
+    public SoundScript sound;
+
     public float score = 0;
     private float highScore = 0;
     public int fish = 0;
@@ -42,9 +44,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // public void Start(){
-    //     StartGame();
-    // }
+    public void Start(){
+        sound.playMainMenu();
+        // StartGame();
+    }
 
     public void fadePanel(){
         mainMenu.SetTrigger("MainMenuFade");
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnFlyingObstacles(20f));
         StartCoroutine(updateScore());
         p.gameOver = false;
+        sound.playRegularMusic();
     }
 
     // Update is called once per frame

@@ -43,4 +43,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c363c334768ddd4e89655f8f1db1d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blackScreen: {fileID: 0}
+  mainMenu: {fileID: 0}
+  scoreDisplay: {fileID: 0}
+  highScoreDisplay: {fileID: 0}
+  fishDisplay: {fileID: 0}
+  Obstacle: {fileID: 759094540157351516, guid: ca578a42f70c331478af009bb27a71ed, type: 3}
+  iceSkate: {fileID: 1295496462523146714, guid: d16cde2ea0d7a5e4e868690b4bba34e3,
+    type: 3}
+  flyingOb: {fileID: 2169054379567533876, guid: ac49fff00834a1643a206fdf68bac923,
+    type: 3}
+  fishOb: {fileID: 1504669983677437590, guid: a75c608fc0bb69d49b35b1217d865ee8, type: 3}
+  scrollers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  p: {fileID: 0}
+  score: 0
+  fish: 0
   difficulty: 0
+  backgroundScrollSpeed: 1
+  speedBoost: 80

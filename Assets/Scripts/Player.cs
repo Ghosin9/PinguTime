@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
 
     public Animator camShake;
     public GameObject evil;
+
+    public SoundScript sound;
 
     public bool gameOver = false;
 
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
             //slow down velocity
             rb.velocity = new Vector2(rb.velocity.x * 0.95f * Time.deltaTime, rb.velocity.y * 0.95f * Time.deltaTime);
 
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Escape)){
                 //reset game
                 resetGame(true);
             }
@@ -109,6 +112,7 @@ public class Player : MonoBehaviour
 
         if (restart){
             //game over menu
+            Debug.Log("fucker");
             GameOverMenu.SetTrigger("GameOver");
             GameManager.instance.StartGame();
             //set back to false
@@ -139,6 +143,7 @@ public class Player : MonoBehaviour
     }
 
     public void endGame(bool restart){
+        sound.playMainMenu();
         gameOver = true;
         gameObject.tag = "Untagged";
 
@@ -150,10 +155,15 @@ public class Player : MonoBehaviour
 
         if (restart){
             //insert animation to end game
+            Debug.Log("penis");
             StartCoroutine(displayGameEnd());
 
             GameManager.instance.updateHighScore();
         }
+    }
+
+    public void removeSelection(){
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(null);
     }
 
     public IEnumerator displayGameEnd(){

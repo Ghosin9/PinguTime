@@ -10,7 +10,6 @@ public class SpeedBoost : MonoBehaviour
 
     public Rigidbody2D rb;
     public BoxCollider2D collider;
-    private float width;
 
     private bool destroyObj = true;
 
@@ -19,8 +18,6 @@ public class SpeedBoost : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
-        width = collider.size.x;
-        width = width * this.transform.localScale.x;
 
         if (GameManager.instance != null){
             playerSpeed = GameManager.instance.speedBoost;
