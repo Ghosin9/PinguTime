@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
 
         if (restart){
             //game over menu
-            Debug.Log("fucker");
+            // Debug.Log("fucker");
             GameOverMenu.SetTrigger("GameOver");
             GameManager.instance.StartGame();
             //set back to false
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
 
         if (restart){
             //insert animation to end game
-            Debug.Log("penis");
+            // Debug.Log("penis");
             StartCoroutine(displayGameEnd());
 
             GameManager.instance.updateHighScore();

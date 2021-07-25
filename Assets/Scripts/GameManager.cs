@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour
         // StartGame();
     }
 
+    public void ExitGame(){
+        Application.Quit();
+    }
+
     public void fadePanel(){
         mainMenu.SetTrigger("MainMenuFade");
     }
