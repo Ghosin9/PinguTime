@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
 
         GameManager.instance.changeSpeed(1f);
 
-
         //evil
         EvilPingu temp = evil.GetComponent<EvilPingu>();
         evil.transform.position = temp.offScreen.transform.position;
@@ -122,6 +121,9 @@ public class Player : MonoBehaviour
         //score
         GameManager.instance.score = 0;
         GameManager.instance.scoreDisplay.text = "Score: ";
+
+        //sound
+        sound.playMainMenu();
     }
 
     public void pauseGame(){
@@ -143,7 +145,6 @@ public class Player : MonoBehaviour
     }
 
     public void endGame(bool restart){
-        sound.playMainMenu();
         gameOver = true;
         gameObject.tag = "Untagged";
 
