@@ -66,7 +66,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawnFlyingObstacles(20f));
         StartCoroutine(updateScore());
         p.gameOver = false;
-        sound.playRegularMusic();
     }
 
     // Update is called once per frame
@@ -103,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void updateHighScore(){
         if (score >= highScore){
             highScore = score;
-            highScoreDisplay.text = "High Score: " + highScore;
+            highScoreDisplay.text = "High Score: " + highScore*100f;
         }
     }
 
